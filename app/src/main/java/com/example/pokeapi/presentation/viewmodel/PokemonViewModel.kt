@@ -11,27 +11,36 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
+sealed class UiState {
+    object Idle : UiState()
+    object Loading : UiState()
+    data class Success(val data: List<Pokemon>) : UiState()
+    data class Error(val message: String) : UiState()
+}
+
 class PokemonViewModel(private val getPokemonListUseCase: GetPokemonListUseCase) : ViewModel() {
-    private val _pokemonList = MutableStateFlow<List<Pokemon>>(emptyList())
-    val pokemonList: StateFlow<List<Pokemon>> = _pokemonList
+
+    private val _uiState = MutableStateFlow<UiState>(UiState.Idle)
+    val uiState: StateFlow<UiState> = _uiState
 
     fun getPokemonList(limit: Int, offset: Int) {
         viewModelScope.launch {
+            _uiState.value = UiState.Loading
             try {
                 getPokemonListUseCase(limit, offset)
                     .flowOn(Dispatchers.IO)
                     .collect { response ->
-                        _pokemonList.value = response.results
-                        Log.i("pokeapi", pokemonList.value.toString())
-                    }    
-            }catch (e: Exception){
-                Log.e("pokeapi",e.toString())
+                        _uiState.value = UiState.Success(response.results)
+                        Log.i("pokeapi", response.results.toString())
+                    }
+            } catch (e: Exception) {
+                _uiState.value = UiState.Error(e.message ?: "unknow error")
+                Log.e("pokeapi", e.toString())
             }
-            
         }
     }
 
     fun filterText(text: String) {
-        Log.i("pokeapi","text change: $text")
+        Log.i("pokeapi", "text change: $text")
     }
 }

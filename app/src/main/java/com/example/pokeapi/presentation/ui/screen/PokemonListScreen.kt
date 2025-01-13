@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -16,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -23,6 +25,7 @@ import com.example.pokeapi.domain.usecase.GetPokemonListUseCase
 import com.example.pokeapi.presentation.PokemonApp
 import com.example.pokeapi.presentation.viewmodel.PokemonViewModel
 import com.example.pokeapi.presentation.viewmodel.PokemonViewModelFactory
+import com.example.pokeapi.presentation.viewmodel.UiState
 
 @Composable
 fun PokemonListScreen(
@@ -36,9 +39,8 @@ fun PokemonListScreen(
     val viewModelFactory = PokemonViewModelFactory(getPokemonListUseCase)
     val viewModel: PokemonViewModel = viewModel(factory = viewModelFactory)
 
-    val pokemonList by viewModel.pokemonList.collectAsState()
-    //val filteredItems by viewModel.filteredItems.collectAsStateWithLifecycle()
     var text by rememberSaveable { mutableStateOf("") }
+    val uiState by viewModel.uiState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -59,10 +61,27 @@ fun PokemonListScreen(
         }) {
             Text("Buscar")
         }
-        LazyColumn {
-            items(pokemonList) { pokemon ->
-                Text(pokemon.name)
+
+        when (uiState) {
+            is UiState.Loading -> {
+                CircularProgressIndicator()
             }
+
+            is UiState.Error -> {
+                val errorMessage = (uiState as UiState.Error).message
+                Text("Error: $errorMessage", color = Color.Red)
+            }
+
+            is UiState.Success -> {
+                val pokemonList = (uiState as UiState.Success).data
+                LazyColumn {
+                    items(pokemonList) { pokemon ->
+                        Text(pokemon.name)
+                    }
+                }
+            }
+
+            UiState.Idle -> {}
         }
     }
 }
