@@ -1,4 +1,4 @@
-package com.example.pokeapi.ui.theme
+package com.example.pokeapi.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

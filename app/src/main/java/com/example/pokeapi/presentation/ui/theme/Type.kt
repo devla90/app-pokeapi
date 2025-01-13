@@ -1,4 +1,4 @@
-package com.example.pokeapi.ui.theme
+package com.example.pokeapi.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
