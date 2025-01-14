@@ -58,7 +58,7 @@ fun PokemonListScreen(
             modifier = Modifier.fillMaxWidth()
         )
         Button(onClick = {
-            viewModel.getPokemonList(20, 0)
+            viewModel.filterPokemonByName(text)
         }) {
             Text("Buscar")
         }
