@@ -16,7 +16,7 @@ import javax.inject.Inject
 sealed class UiState {
     object Idle : UiState()
     object Loading : UiState()
-    data class Success(val data: List<Pokemon>) : UiState()
+    data class Success(val data: Map<String, Pokemon>) : UiState()
     data class Error(val message: String) : UiState()
 }
 
@@ -36,8 +36,8 @@ class PokemonViewModel @Inject constructor(
                 getPokemonListUseCase(limit, offset)
                     .flowOn(Dispatchers.IO)
                     .collect { response ->
-                        _uiState.value = UiState.Success(response.results)
-                        Log.i("pokeapi", response.results.toString())
+                        _uiState.value = UiState.Success(response)
+                        Log.i("pokeapi", response.toString())
                     }
             } catch (e: Exception) {
                 _uiState.value = UiState.Error(e.message ?: "unknow error")

@@ -26,7 +26,6 @@ import com.example.pokeapi.presentation.PokemonApp
 import com.example.pokeapi.presentation.viewmodel.PokemonViewModel
 import com.example.pokeapi.presentation.viewmodel.PokemonViewModelFactory
 import com.example.pokeapi.presentation.viewmodel.UiState
-//import androidx.hilt.navigation.compose.hiltViewModel // Importar esta línea
 
 @Composable
 fun PokemonListScreen(
@@ -75,9 +74,9 @@ fun PokemonListScreen(
             }
 
             is UiState.Success -> {
-                val pokemonList = (uiState as UiState.Success).data
+                val pokemonMap = (uiState as UiState.Success).data
                 LazyColumn {
-                    items(pokemonList) { pokemon ->
+                    items(pokemonMap.values.toList()) { pokemon ->
                         Text(pokemon.name)
                     }
                 }
