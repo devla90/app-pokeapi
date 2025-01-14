@@ -26,18 +26,20 @@ import com.example.pokeapi.presentation.PokemonApp
 import com.example.pokeapi.presentation.viewmodel.PokemonViewModel
 import com.example.pokeapi.presentation.viewmodel.PokemonViewModelFactory
 import com.example.pokeapi.presentation.viewmodel.UiState
+//import androidx.hilt.navigation.compose.hiltViewModel // Importar esta línea
 
 @Composable
 fun PokemonListScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: PokemonViewModel = viewModel()
 ) {
 
-    val context = LocalContext.current
-    val application = context.applicationContext as PokemonApp
-    val pokemonRepository = application.pokemonRepository
-    val getPokemonListUseCase = GetPokemonListUseCase(pokemonRepository)
-    val viewModelFactory = PokemonViewModelFactory(getPokemonListUseCase)
-    val viewModel: PokemonViewModel = viewModel(factory = viewModelFactory)
+//    val context = LocalContext.current
+//    val application = context.applicationContext as PokemonApp
+//    val pokemonRepository = application.pokemonRepository
+//    val getPokemonListUseCase = GetPokemonListUseCase(pokemonRepository)
+//    val viewModelFactory = PokemonViewModelFactory(getPokemonListUseCase)
+//    val viewModel: PokemonViewModel = viewModel(factory = viewModelFactory)
 
     var text by rememberSaveable { mutableStateOf("") }
     val uiState by viewModel.uiState.collectAsState()

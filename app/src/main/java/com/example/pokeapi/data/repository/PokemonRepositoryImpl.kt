@@ -5,8 +5,11 @@ import com.example.pokeapi.data.network.PokeApiService
 import com.example.pokeapi.domain.repository.PokemonRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class PokemonRepositoryImpl(private val apiService: PokeApiService): PokemonRepository {
+class PokemonRepositoryImpl @Inject constructor(
+    private val apiService: PokeApiService
+) : PokemonRepository {
     override fun getPokemonList(limit: Int, offset: Int): Flow<PokemonResponse> = flow {
         emit(apiService.getPokemonList(limit, offset))
     }

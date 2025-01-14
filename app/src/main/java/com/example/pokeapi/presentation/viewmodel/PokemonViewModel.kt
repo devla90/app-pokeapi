@@ -5,11 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokeapi.data.model.Pokemon
 import com.example.pokeapi.domain.usecase.GetPokemonListUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 sealed class UiState {
     object Idle : UiState()
@@ -18,7 +20,11 @@ sealed class UiState {
     data class Error(val message: String) : UiState()
 }
 
-class PokemonViewModel(private val getPokemonListUseCase: GetPokemonListUseCase) : ViewModel() {
+@HiltViewModel
+class PokemonViewModel @Inject constructor(
+    private val getPokemonListUseCase: GetPokemonListUseCase
+) :
+    ViewModel() {
 
     private val _uiState = MutableStateFlow<UiState>(UiState.Idle)
     val uiState: StateFlow<UiState> = _uiState
