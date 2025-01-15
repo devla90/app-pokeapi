@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pokeapi.domain.usecase.GetPokemonListUseCase
 import com.example.pokeapi.presentation.PokemonApp
@@ -32,7 +33,8 @@ import com.example.pokeapi.presentation.viewmodel.UiState
 @Composable
 fun PokemonListScreen(
     modifier: Modifier = Modifier,
-    viewModel: PokemonViewModel = viewModel()
+    viewModel: PokemonViewModel = hiltViewModel(),
+    onPokemonClick: (String) -> Unit
 ) {
 
 //    val context = LocalContext.current
@@ -82,7 +84,8 @@ fun PokemonListScreen(
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(8.dp)) {
+                                .padding(8.dp)
+                                .clickable { onPokemonClick(pokemon.url) }) {
                             Text(
                                 pokemon.name,
                                 modifier = Modifier.padding(16.dp)
