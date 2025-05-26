@@ -4,11 +4,13 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
@@ -32,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -225,4 +228,42 @@ fun PreviewListSection() {
         pokemonMap = pokemonMap,
         onPokemonClick = {}
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewGradientBackground() {
+    GradientBackground()
+}
+@Composable
+fun GradientBackground() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(300.dp)
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(Color.Blue, Color.Green)
+                )
+            )
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+                .drawIntoCanvas { canvas ->
+                    val path = Path().apply {
+                        moveTo(0f, 300.dp.toPx())
+                        quadTo(
+                            size.width / 2, 250.dp.toPx(),
+                            size.width, 300.dp.toPx()
+                        )
+                        lineTo(size.width, 0f)
+                        lineTo(0f, 0f)
+                        close()
+                    }
+                    canvas.drawPath(path, paint)
+                }
+        )
+    }
 }
