@@ -7,6 +7,7 @@ plugins {
     //added for dagger
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android") version "2.51.1" apply true
+    id("org.jetbrains.dokka") version "2.0.0"
 }
 
 android {
@@ -83,6 +84,23 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+}
+
+subprojects {
+    apply(plugin = "org.jetbrains.dokka")
+}
+
+tasks.dokkaHtml.configure {
+    outputDirectory.set(buildDir.resolve("dokka"))
+
+    dokkaSourceSets {
+        named("main") {
+            skipDeprecated.set(false)
+            skipEmptyPackages.set(false)
+            includeNonPublic.set(true) // <- Esto incluye funciones sin public explícito
+            reportUndocumented.set(true)
+        }
+    }
 }
 
 // Allow references to generated code

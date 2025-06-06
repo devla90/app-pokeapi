@@ -37,6 +37,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * Composable que muestra un saludo personalizado.
+ *
+ * @param name Nombre a incluir en el mensaje.
+ * @param modifier Modificador opcional para el estilo.
+ */
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
