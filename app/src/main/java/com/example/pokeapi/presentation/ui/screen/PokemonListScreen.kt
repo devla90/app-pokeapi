@@ -251,19 +251,19 @@ fun GradientBackground() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(300.dp)
-                .drawIntoCanvas { canvas ->
-                    val path = Path().apply {
-                        moveTo(0f, 300.dp.toPx())
-                        quadTo(
-                            size.width / 2, 250.dp.toPx(),
-                            size.width, 300.dp.toPx()
-                        )
-                        lineTo(size.width, 0f)
-                        lineTo(0f, 0f)
-                        close()
-                    }
-                    canvas.drawPath(path, paint)
-                }
+//                .drawIntoCanvas { canvas ->
+//                    val path = Path().apply {
+//                        moveTo(0f, 300.dp.toPx())
+//                        quadTo(
+//                            size.width / 2, 250.dp.toPx(),
+//                            size.width, 300.dp.toPx()
+//                        )
+//                        lineTo(size.width, 0f)
+//                        lineTo(0f, 0f)
+//                        close()
+//                    }
+//                    canvas.drawPath(path, paint)
+//                }
         )
     }
 }
