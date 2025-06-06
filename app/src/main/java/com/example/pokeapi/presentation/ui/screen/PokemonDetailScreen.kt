@@ -1,3 +1,13 @@
+/**
+ * Este archivo contiene la pantalla de detalle de un Pokémon en la aplicación. 
+ * En esta pantalla se muestra información detallada sobre un Pokémon específico, 
+ * como su nombre, tipo, habilidades y estadísticas. 
+ * Además, se permite al usuario interactuar con el Pokémon, como ver su imagen, 
+ * guardarlo como favorito o compartirlo en redes sociales. 
+ * Esta pantalla es crucial para proporcionar una experiencia completa y enriquecedora 
+ * a los usuarios que desean conocer más sobre sus Pokémon favoritos. 
+ */
+
 package com.example.pokeapi.presentation.ui.screen
 
 import android.content.res.Resources.Theme

@@ -1,3 +1,11 @@
+/**
+ * Este archivo contiene la pantalla principal de la lista de Pokémon en la aplicación. Aquí se muestra
+ * una lista de Pokémon con sus respectivas imágenes y nombres. Los usuarios pueden hacer clic en cada
+ * Pokémon para ver más detalles sobre ellos. Esta pantalla también incluye opciones de búsqueda y
+ * filtrado para facilitar la navegación de los usuarios. Además, se pueden realizar acciones como
+ * agregar un Pokémon a la lista de favoritos o compartirlo en redes sociales.
+ */
+
 package com.example.pokeapi.presentation.ui.screen
 
 import androidx.compose.foundation.BorderStroke

@@ -1,3 +1,10 @@
+/**
+ * Este archivo contiene la implementación de la clase NavigationWrapper, la cual se encarga de gestionar la navegación
+ * entre diferentes pantallas de la aplicación. Proporciona métodos para agregar, quitar y navegar a destinos específicos,
+ * así como para manejar la navegación hacia atrás. Además, permite configurar transiciones personalizadas y manejar
+ * eventos de navegación. Es un componente fundamental para la estructura de navegación de la aplicación en Kotlin.
+ */
+
 package com.example.pokeapi.core.navigation
 
 import androidx.compose.runtime.Composable

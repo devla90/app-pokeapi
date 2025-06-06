@@ -1,3 +1,9 @@
+/**
+ * Este archivo contiene la definición de los módulos de Dagger utilizados para la inyección de dependencias en la aplicación.
+ * Incluye la configuración de los módulos necesarios para proveer instancias de las clases requeridas en diferentes partes del código.
+ * Además, se encarga de la configuración de los componentes necesarios para la inyección de dependencias en las actividades y fragmentos de la aplicación.
+ */
+
 package com.example.pokeapi.di
 
 import com.example.pokeapi.data.network.PokeApiService

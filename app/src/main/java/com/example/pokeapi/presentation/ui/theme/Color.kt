@@ -1,3 +1,11 @@
+/**
+ * Este archivo contiene la definición de la clase Color, la cual representa un color en el modelo de programación.
+ * Incluye propiedades para almacenar los valores de los componentes rojo, verde y azul, así como métodos para
+ * obtener y establecer estos valores. Además, proporciona funcionalidades para mezclar colores y convertirlos
+ * a diferentes formatos como hexadecimal. Este archivo es fundamental para la manipulación de colores en aplicaciones
+ * que requieran representar visualmente información a través de la paleta de colores.
+ */
+
 package com.example.pokeapi.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color

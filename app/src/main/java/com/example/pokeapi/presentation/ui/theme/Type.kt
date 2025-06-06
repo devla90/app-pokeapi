@@ -1,3 +1,9 @@
+/**
+ * Este archivo contiene la definición de los tipos de datos utilizados en la aplicación.
+ * Incluye la declaración de las clases y estructuras de datos necesarias para el funcionamiento del programa.
+ * Además, proporciona implementaciones de interfaces y extensiones para mejorar la funcionalidad de las clases existentes.
+ */
+
 package com.example.pokeapi.presentation.ui.theme
 
 import androidx.compose.material3.Typography

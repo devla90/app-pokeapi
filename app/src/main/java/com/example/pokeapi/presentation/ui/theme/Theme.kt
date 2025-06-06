@@ -1,3 +1,8 @@
+/**
+ * Este archivo contiene la definición de los temas de la aplicación, incluyendo colores, estilos y recursos visuales.
+ * Aquí se encuentran las constantes y funciones relacionadas con la apariencia visual de la interfaz de usuario.
+ */
+
 package com.example.pokeapi.presentation.ui.theme
 
 import android.app.Activity

@@ -1,3 +1,9 @@
+/**
+ * Este archivo contiene la lógica de negocio y la gestión de datos relacionada con los Pokémon en la aplicación.
+ * Incluye funciones para obtener la lista de Pokémon, buscar un Pokémon por su nombre y agregar un nuevo Pokémon.
+ * También se encarga de manejar la comunicación con la capa de repositorio para obtener los datos necesarios.
+ */
+
 package com.example.pokeapi.presentation.viewmodel
 
 import android.util.Log
@@ -20,6 +26,10 @@ sealed class UiState {
     data class Error(val message: String) : UiState()
 }
 
+/**
+ * Clase que representa el ViewModel para la pantalla de Pokémon.
+ * Se encarga de manejar la lógica de negocio y la interacción con el caso de uso para obtener la lista de Pokémon.
+ */
 @HiltViewModel
 class PokemonViewModel @Inject constructor(
     private val getPokemonListUseCase: GetPokemonListUseCase
